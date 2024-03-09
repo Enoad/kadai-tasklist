@@ -26,7 +26,7 @@
         </table>
     @endif
 
-{{-- メッセージ作成ページへのリンク --}}                                                   
+{{-- タスク作成ページへのリンク --}}                                                   
     <a class="btn btn-primary" href="{{ route('tasks.create') }}">タスクの追加</a> 
 
 @endsection
