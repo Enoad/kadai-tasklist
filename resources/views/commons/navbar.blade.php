@@ -10,7 +10,7 @@
         <div class="flex-none">
             <ul tabindex="0" class="menu lg:block lg:menu-horizontal">
                 {{-- タスク作成ページへのリンク --}}
-                <li><a class="link link-hover" href="{{ route('tasks.create') }}">新しいタスク</a></li>
+                <li><a class="link link-hover" href="">新しいタスク</a></li>
             </ul>
         </div>
     </nav>
@@ -21,7 +21,7 @@
     <nav class="navbar bg-neutral text-neutral-content">
         {{-- トップページへのリンク --}}
         <div class="flex-1">
-            <h1><a class="btn btn-ghost normal-case text-xl" href="/">TaskList</a></h1>
+            <h1><a class="btn btn-ghost normal-case text-xl" href="/">TaskLists</a></h1>
         </div>
 
         <div class="flex-none">
@@ -49,6 +49,7 @@
         </div>
     </nav>
 </header>
+
 
 
 

@@ -8,11 +8,12 @@ use App\Http\Controllers\TasksController;
 Route::get('/', [TasksController::class, 'index']);
 Route::resource('tasks', TasksController::class);
 
-// 以下L18
+
 
 Route::get('/', function () {
     return view('dashboard');
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
