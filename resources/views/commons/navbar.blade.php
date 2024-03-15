@@ -21,7 +21,7 @@
     <nav class="navbar bg-neutral text-neutral-content">
         {{-- トップページへのリンク --}}
         <div class="flex-1">
-            <h1><a class="btn btn-ghost normal-case text-xl" href="/">TaskLists</a></h1>
+            <h1><a class="btn btn-ghost normal-case text-xl" href="/dashboard">TaskList</a></h1>
         </div>
 
         <div class="flex-none">

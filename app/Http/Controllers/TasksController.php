@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\Task;
 
+use Illuminate\Support\Facades\Auth;                        // 追加
+use App\Models\User;           //追加
+
 class TasksController extends Controller
 {
     /**
@@ -60,8 +63,8 @@ class TasksController extends Controller
         $task->content = $request->content;
         $task->save();
 
-        // トップページへリダイレクトさせる
-        return redirect('/');
+        // メインに飛ぶ
+        return redirect('/dashboard');
     }
 
     /**
@@ -121,8 +124,8 @@ class TasksController extends Controller
         $task->content = $request->content;
         $task->save();
 
-        // トップページへリダイレクトさせる
-        return redirect('/');
+        // メインに飛ばす
+        return redirect('/dashboard');
     }
 
     /**
@@ -139,6 +142,6 @@ class TasksController extends Controller
         $task->delete();
 
         // トップページへリダイレクトさせる
-        return redirect('/');
+        return redirect('/dashboard');
     }
 }
