@@ -18,6 +18,7 @@ class TasksController extends Controller
      */
     public function index()
     {
+        /*
     // タスク一覧を取得
         $tasks = Task::all();         // 追加
 
@@ -25,6 +26,24 @@ class TasksController extends Controller
         return view('tasks.index', [     // 追加
             'tasks' => $tasks,        // 追加
         ]);                                 // 追加
+        */
+        
+        
+        $data = [];
+        if (\Auth::check()) { // 認証済みの場合
+            // 認証済みユーザを取得
+            $user = \Auth::user();
+            // ユーザの投稿の一覧を作成日時の降順で取得
+            // （後のChapterで他ユーザの投稿も取得するように変更しますが、現時点ではこのユーザの投稿のみ取得します）
+            $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+            $data = [
+                'user' => $user,
+                'tasks' => $tasks,
+            ];
+        }
+        
+        // dashboardビューでそれらを表示
+        return view('tasks.index', $data);
     }
 
     /**
@@ -57,11 +76,15 @@ class TasksController extends Controller
            'content' => 'required|max:255',
         ]);
         
+        
+        
         // タスクを作成
         $task = new Task;
         $task->status = $request->status;
         $task->content = $request->content;
+        $task->user_id = auth()->id(); 
         $task->save();
+        
 
         // メインに飛ぶ
         return redirect('/dashboard');
@@ -138,8 +161,10 @@ class TasksController extends Controller
     {
         // idの値でタスクを検索して取得
         $task = Task::findOrFail($id);
-        // タスクを削除
-        $task->delete();
+        if (\Auth::id() === $task->user_id) {
+            $task->delete();
+        }
+        
 
         // トップページへリダイレクトさせる
         return redirect('/dashboard');
